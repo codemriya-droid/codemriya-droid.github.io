@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ description or 'A developer blog documenting coding projects and technical experiences in the Matrix' }}">
+    <title>{{ title }}{% if title != "codemriya - A Developer's Blog" %} | codemriya{% endif %}</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Matrix Digital Rain Background -->
+    <div class="matrix-rain"></div>
+    
+    <div class="container">
+        <header class="site-header">
+            <nav class="nav">
+                <a href="/" class="nav-brand">
+                    <span class="brand-icon">⚡</span>
+                    codemriya.exe
+                </a>
+                <div class="nav-links">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/blog" class="nav-link">Blog</a>
+                    <a href="https://github.com/codemriya-droid" class="nav-link" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            {% if page.url != "/" %}
+            <article class="post">
+                <header class="post-header">
+                    <h1 class="post-title">{{ title }}</h1>
+                    {% if date %}
+                    <div class="post-meta">
+                        <time datetime="{{ date | date('Y-m-d') }}" class="post-date">
+                            {{ date | date('F d, Y') }}
+                        </time>
+                        {% if tags %}
+                        <div class="post-tags">
+                            {% for tag in tags %}
+                            <span class="tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </header>
+                <div class="post-content">
+                    {{ content | safe }}
+                </div>
+            </article>
+            {% else %}
+            <div class="home-content">
+                <div class="hero-section">
+                    <h1 class="hero-title">{{ title }}</h1>
+                    {{ content | safe }}
+                </div>
+            </div>
+            {% endif %}
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-content">
+                <p>&copy; {{ "now" | date("Y") }} codemriya. Built with <a href="https://www.11ty.dev/" target="_blank" rel="noopener">Eleventy</a>.</p>
+                <div class="footer-links">
+                    <a href="https://github.com/codemriya-droid" target="_blank" rel="noopener">GitHub</a>
+                    <a href="/blog/how-to-add-new-blog-posts/">Writing Guide</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
